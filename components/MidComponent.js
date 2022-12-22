@@ -21,7 +21,7 @@ export default function MidComponent({data, setData}) {
         <View style={styles.catConatiner}>
           <Image
             style={styles.catStyle}
-            resizeMode="contain"
+            resizeMode="cover"
             source={require('../assets/cat.png')}
           />
           <Text style={[styles.text, {marginTop: 10}]}>할 일이 없습니다.</Text>

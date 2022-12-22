@@ -12,6 +12,8 @@ export default function InputBox({onChangeTextHandler, text, onSubmit}) {
           placeholder="할 일을 입력하세요."
           onChangeText={onChangeTextHandler}
           value={text}
+          onSubmitEditing={onSubmit}
+          returnKeyType="done"
         />
       </View>
       <View style={styles.buttonBox}>

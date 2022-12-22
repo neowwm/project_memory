@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import HeaderDate from './HeaderDate';
 import InputBox from './InputBox';
-import {allRemoveAlert} from './AlertButton';
+import {allRemoveAlert, RemoveAlert} from './AlertButton';
 import AllSelectAndRemoveButtons from './AllSelectAndRemoveButtons';
 import 'react-native-get-random-values';
 import {v4 as uuid4} from 'uuid';
@@ -23,6 +23,17 @@ export default function TodoApp() {
 
   useGetData(setData);
   useSetData(data);
+
+  const isDoneHandler = id => {
+    const nextData = data.map(item =>
+      item.id === id ? {...item, isDone: !item.isDone} : item,
+    );
+    setData(nextData);
+  };
+
+  const onRemoveHandler = id => {
+    RemoveAlert(data, id, setData);
+  };
 
   const isAllDone = data.every(item => item.isDone === true) === true;
 
@@ -61,7 +72,12 @@ export default function TodoApp() {
     <KeyboardAvoidingView style={{flex: 1}}>
       <View style={styles.block}>
         <HeaderDate />
-        <MidComponent data={data} setData={setData} />
+        <MidComponent
+          data={data}
+          setData={setData}
+          isDoneHandler={isDoneHandler}
+          onRemoveHandler={onRemoveHandler}
+        />
         {data.length !== 0 && (
           <AllSelectAndRemoveButtons
             onAllSelectHandler={onAllSelectHandler}
@@ -83,6 +99,5 @@ export default function TodoApp() {
 
 const styles = StyleSheet.create({
   block: {flex: 1},
-
   bottom: {flex: 1, height: 40, backgroundColor: 'black'},
 });

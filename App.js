@@ -1,12 +1,15 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import TodoApp from './components/TodoApp';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.block}>
-      <TodoApp />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView edges={['bottom']} style={styles.block}>
+        <TodoApp />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 

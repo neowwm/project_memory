@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, StatusBar} from 'react-native';
 import {themeColor} from './Color';
 
 export default function HeaderDate() {
@@ -8,11 +8,17 @@ export default function HeaderDate() {
   const KTC = new Date(UTC + 9 * 60 * 60 * 1000);
 
   return (
-    <View style={styles.block}>
-      <Text style={styles.text}>{`${KTC.getFullYear()}년 ${
-        KTC.getMonth() + 1
-      }월 ${KTC.getDate()}일`}</Text>
-    </View>
+    <>
+      <StatusBar
+        backgroundColor={themeColor.headerAndInputColor}
+        barStyle="light-content"
+      />
+      <View style={styles.block}>
+        <Text style={styles.text}>{`${KTC.getFullYear()}년 ${
+          KTC.getMonth() + 1
+        }월 ${KTC.getDate()}일`}</Text>
+      </View>
+    </>
   );
 }
 
